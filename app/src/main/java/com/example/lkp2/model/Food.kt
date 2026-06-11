@@ -4,5 +4,5 @@ import androidx.annotation.DrawableRes
 data class Food(
     val name: String,
     val price: String,
-    @DrawableRes val imageRes: Int
+    val imageUrl: String // Diubah agar menerima URL internet
 )

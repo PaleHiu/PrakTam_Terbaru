@@ -53,6 +53,7 @@ import com.example.lkp2.model.FoodSource
 import com.example.lkp2.ui.theme.LKP2Theme
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import coil.compose.AsyncImage
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -118,9 +119,11 @@ fun FoodRowItem(food: Food) {
         )
     ) {
         Column {
-            Image(
-                painter = painterResource(id = food.imageRes),
+            AsyncImage(
+                model = food.imageUrl,
                 contentDescription = food.name,
+                placeholder = painterResource(id = R.drawable.ic_launcher_background), // Gambar saat loading
+                error = painterResource(id = R.drawable.ic_launcher_foreground),       // Gambar jika URL mati
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(110.dp)
@@ -163,9 +166,11 @@ fun DetailScreen(food: Food) {
         ) {
             Column {
                 Box {
-                    Image(
-                        painter = painterResource(id = food.imageRes),
+                    AsyncImage(
+                        model = food.imageUrl,
                         contentDescription = food.name,
+                        placeholder = painterResource(id = R.drawable.ic_launcher_background),
+                        error = painterResource(id = R.drawable.ic_launcher_foreground),
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(200.dp)
